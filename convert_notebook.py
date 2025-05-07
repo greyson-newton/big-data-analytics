@@ -4,6 +4,8 @@ import click
 import nbformat
 from nbconvert import HTMLExporter, PDFExporter
 import logging
+
+
 def convert_notebook(filepath, output_dir, to_format):
     # Read the notebook
     with open(filepath, 'r', encoding='utf-8') as f:
@@ -60,6 +62,7 @@ def main(to, file_path, pattern, output_dir):
         files = glob.glob(pattern, recursive=True)
         if not files:
             click.echo("Error: No files found matching the given pattern.")
+            click.echo(f"{file_path=} is not a valid notebook file.")
             return
 
         if not output_dir:
